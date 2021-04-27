@@ -1,20 +1,21 @@
-﻿using AutoMapper;
-using LibraryApplication.Application.Common.Interfaces;
-using LibraryApplication.Application.Common.Mappings;
+﻿using LibraryApplication.Application.Common.Interfaces;
+using LibraryApplication.Constants;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Commands.Book
 {
+    [Authorize(Roles = DefaultRoleNames.Admin)]
     public class UpdateBookCommand : IRequest
     {
-        public long ISBN { get; set; }
+        public long ISBN { get; }
 
         public string NewName { get; set; }
 
-        public string NewAuthor { get; internal set; }
+        public string NewAuthor { get; set; }
 
         public string NewDescription { get; set; }
 
@@ -32,9 +33,9 @@ namespace LibraryApplication.Application.Commands.Book
 
         public async Task<Unit> Handle(UpdateBookCommand request, CancellationToken cancellationToken)
         {
-            var book = await _dbContext.Books.SingleOrDefaultAsync(b => b.ISBN.Equals(request.ISBN));
+            var book = await _dbContext.BookMetas.SingleOrDefaultAsync(b => b.ISBN.Equals(request.ISBN));
 
-            book.Name = request.NewName;
+            book.Title = request.NewName;
             book.Author = request.NewAuthor;
             book.Description = request.NewDescription;
             book.ShortDescription = request.NewShortDescription;

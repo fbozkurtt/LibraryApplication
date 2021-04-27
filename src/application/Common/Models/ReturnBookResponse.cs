@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LibraryApplication.Application.Common.Models
+﻿namespace LibraryApplication.Application.Common.Models
 {
     public class ReturnBookResponse
     {

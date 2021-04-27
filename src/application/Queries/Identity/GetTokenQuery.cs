@@ -1,16 +1,16 @@
 ﻿using LibraryApplication.Application.Common.Interfaces;
 using LibraryApplication.Application.Common.Models;
+using LibraryApplication.Constants;
 using MediatR;
-using System;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Queries.Identity
 {
+    [Authorize(Roles = DefaultRoleNames.User)]
     public class GetTokenQuery : IRequest<LoginResponse>
     {
         [Required]

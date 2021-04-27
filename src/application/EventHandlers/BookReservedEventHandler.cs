@@ -1,11 +1,7 @@
-﻿using LibraryApplication.Application.Common.Interfaces;
-using LibraryApplication.Application.Common.Models;
+﻿using LibraryApplication.Application.Common.Models;
 using LibraryApplication.Domain.Events;
 using MediatR;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

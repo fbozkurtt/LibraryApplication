@@ -1,12 +1,12 @@
 ﻿using LibraryApplication.Application.Common.Exceptions;
 using LibraryApplication.Application.Common.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -20,8 +20,6 @@ namespace LibraryApplication.Infrastructure.Identity
         private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
         private readonly IAuthorizationService _authorizationService;
         private readonly IConfiguration _configuration;
-
-        public object JwtBearerDefaults { get; private set; }
 
         public IdentityService(
             UserManager<ApplicationUser> userManager,
@@ -116,7 +114,7 @@ namespace LibraryApplication.Infrastructure.Identity
 
                 var tokenHandler = new JwtSecurityTokenHandler();
 
-                var identity = new ClaimsIdentity("bearer");
+                var identity = new ClaimsIdentity(JwtBearerDefaults.AuthenticationScheme);
 
                 foreach (var role in userRoles)
                 {

@@ -4,8 +4,6 @@ using LibraryApplication.Domain.Common;
 using MediatR;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Infrastructure.Services

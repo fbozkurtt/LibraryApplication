@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LibraryApplication.Constants
+﻿namespace LibraryApplication.Constants
 {
     public static class DefaultRoleNames
     {

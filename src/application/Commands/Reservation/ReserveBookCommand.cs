@@ -1,21 +1,21 @@
 ﻿using LibraryApplication.Application.Common.Exceptions;
 using LibraryApplication.Application.Common.Interfaces;
+using LibraryApplication.Constants;
 using LibraryApplication.Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Commands.Reservation
 {
+    [Authorize(Roles = DefaultRoleNames.User)]
     public class ReserveBookCommand : IRequest<string>
     {
-        public long ISBN { get; set; }
+        public long ISBN { get; }
     }
 
     public class ReserveBookCommandHandler : IRequestHandler<ReserveBookCommand, string>
@@ -36,31 +36,37 @@ namespace LibraryApplication.Application.Commands.Reservation
 
         public async Task<string> Handle(ReserveBookCommand request, CancellationToken cancellationToken)
         {
-            var book = await _dbContext.Books.SingleOrDefaultAsync(b => b.ISBN.Equals(request.ISBN));
+            var bookMeta = await _dbContext.BookMetas.SingleOrDefaultAsync(b => b.ISBN.Equals(request.ISBN));
 
-            if (book == null)
+            if (bookMeta == null)
                 throw new NotFoundException(
-                    nameof(Domain.Entities.Book),
-                    nameof(Domain.Entities.Book.ISBN),
+                    nameof(BookMeta),
+                    nameof(request.ISBN),
                     request.ISBN);
 
-            var bookToReserve = book.BooksInInventory.FirstOrDefault(b => b.Reserved.Equals(false));
+            var bookToReserve = bookMeta.BooksInInventory.FirstOrDefault(b => b.Reserved.Equals(false));
 
             if (bookToReserve == null)
-                throw new Exception("There is no book available to reserve.");
+                throw new Exception("There is no book available to borrow.");
 
             var user = await _identityService.GetUserAsync(_currentUserService.UserId);
 
             if (user == null)
                 throw new Exception("User not found.");
 
-            await _dbContext.BookReservations.AddAsync(new BookReservation() 
+            bookToReserve.Reserved = true;
+
+            var bookReservation = new BookReservation()
             {
                 UserId = user.Id,
-                BookProductId = bookToReserve.Id.Value,
                 ReservationEnds = DateTime.Now + TimeSpan.FromDays(7),
-                DailyExpirationFee = 0.50m
-            });
+                DailyExpirationFee = 0.50m,
+                BookCopy = bookToReserve
+            };
+
+
+            await _dbContext.BookReservations.AddAsync(bookReservation);
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return bookToReserve.QRCode;
         }

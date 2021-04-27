@@ -1,16 +1,17 @@
 ﻿using LibraryApplication.Application.Common.Interfaces;
 using LibraryApplication.Application.Common.Models;
+using LibraryApplication.Constants;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Commands.Reservation
 {
+    [Authorize(Roles = DefaultRoleNames.User)]
     public class ReturnBookCommand : IRequest<ReturnBookResponse>
     {
         [Required]
@@ -31,9 +32,9 @@ namespace LibraryApplication.Application.Commands.Reservation
         public async Task<ReturnBookResponse> Handle(ReturnBookCommand request, CancellationToken cancellationToken)
         {
             var bookReservation = await _dbContext.BookReservations.SingleOrDefaultAsync(r =>
-                r.Book.QRCode.Equals(request.QRCode));
+                r.BookCopy.QRCode.Equals(request.QRCode) && r.Returned.Equals(false));
 
-            if (bookReservation.Returned)
+            if (bookReservation == null)
             {
                 return new ReturnBookResponse()
                 {
@@ -42,45 +43,36 @@ namespace LibraryApplication.Application.Commands.Reservation
                 };
             }
 
-            var daysPassedSinceReversationEndDate = (DateTime.Now - bookReservation.ReservationEnds).TotalDays;
+            var daysPassedSinceReservationEndDate = (DateTime.Now - bookReservation.ReservationEnds).TotalDays;
 
-            if (daysPassedSinceReversationEndDate > 0)
+            if (daysPassedSinceReservationEndDate > 0)
             {
-                bookReservation.TotalFee = bookReservation.DailyExpirationFee * (decimal)daysPassedSinceReversationEndDate;
+                bookReservation.TotalFee = bookReservation.DailyExpirationFee * (decimal)daysPassedSinceReservationEndDate;
 
-                if (request.Fee >= bookReservation.TotalFee)
+                if (request.Fee < bookReservation.TotalFee)
                 {
-                    request.Fee -= bookReservation.TotalFee;
-
-                    bookReservation.Returned = true;
-
                     await _dbContext.SaveChangesAsync();
 
                     return new ReturnBookResponse()
                     {
-                        Success = true,
-                        Message = $"You have returned the book with a fee. You have left for change {request.Fee}$"
+                        Success = false,
+                        Message = $"{daysPassedSinceReservationEndDate} days have been past since return date." +
+                        $" You have to pay {bookReservation.TotalFee} before returning the book."
                     };
-
                 }
 
-                await _dbContext.SaveChangesAsync();
-
-                return new ReturnBookResponse()
-                {
-                    Success = false,
-                    Message = $"{daysPassedSinceReversationEndDate} days has been past since return date." +
-                    $" You have to pay {bookReservation.TotalFee} before returning the book."
-                };
+                request.Fee -= bookReservation.TotalFee;
             }
 
+            bookReservation.BookCopy.Reserved = false;
             bookReservation.Returned = true;
 
             await _dbContext.SaveChangesAsync();
 
             return new ReturnBookResponse()
             {
-                Success = true
+                Success = true,
+                Message = bookReservation.TotalFee.Value > 0 ? $"Paid {bookReservation.TotalFee.Value}$ for being late for returning the book." : null
             };
         }
     }

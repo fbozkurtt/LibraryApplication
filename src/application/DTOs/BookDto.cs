@@ -1,19 +1,18 @@
 ﻿using AutoMapper;
 using LibraryApplication.Application.Common.Mappings;
 using LibraryApplication.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LibraryApplication.Application.DTOs
 {
-    public class BookDto : IMapFrom<Book>
+    public class BookDto : IMapFrom<BookMeta>
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         public string Author { get; set; }
 
         public long ISBN { get; set; }
+
+        public string QRCode { get; set; }
 
         public string Description { get; set; }
 
@@ -23,7 +22,7 @@ namespace LibraryApplication.Application.DTOs
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Book, BookDto>()
+            profile.CreateMap<BookMeta, BookDto>()
                 .ForMember(d => d.Quantity, s => s.MapFrom(s => s.BooksInInventory.Count));
         }
     }

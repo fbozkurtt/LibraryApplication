@@ -4,16 +4,16 @@ using LibraryApplication.Application.Common.Interfaces;
 using LibraryApplication.Application.Common.Mappings;
 using LibraryApplication.Application.Common.Models;
 using LibraryApplication.Application.DTOs;
+using LibraryApplication.Constants;
 using MediatR;
-using System;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Queries.Book
 {
+    [Authorize(Roles = DefaultRoleNames.User)]
     public class GetBooksQuery : IRequest<PaginatedList<BookDto>>
     {
         public int PageNumber { get; set; } = 1;
@@ -34,7 +34,7 @@ namespace LibraryApplication.Application.Queries.Book
 
         public async Task<PaginatedList<BookDto>> Handle(GetBooksQuery request, CancellationToken cancellationToken)
         {
-            return await _dbContext.Books
+            return await _dbContext.BookMetas
                 .OrderBy(b => b.Created)
                 .ProjectTo<BookDto>(_mapper.ConfigurationProvider)
                 .PaginatedListAsync(request.PageNumber, request.PageSize); ;

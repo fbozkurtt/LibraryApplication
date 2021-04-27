@@ -1,19 +1,18 @@
 ﻿using AutoMapper;
-using LibraryApplication.Application.Common.Exceptions;
 using LibraryApplication.Application.Common.Interfaces;
 using LibraryApplication.Application.Common.Mappings;
+using LibraryApplication.Constants;
 using LibraryApplication.Domain.Events;
 using MediatR;
-using System;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Commands.Book
 {
-    public class CreateBookCommand : IRequest, IMapFrom<Domain.Entities.Book>
+    [Authorize(Roles = DefaultRoleNames.Admin)]
+    public class CreateBookCommand : IRequest, IMapFrom<Domain.Entities.BookMeta>
     {
         [Required]
         [MaxLength(500)]
@@ -45,9 +44,9 @@ namespace LibraryApplication.Application.Commands.Book
 
         public async Task<Unit> Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
-            var book = _mapper.Map<Domain.Entities.Book>(request);
+            var book = _mapper.Map<Domain.Entities.BookMeta>(request);
 
-            await _dbContext.Books.AddAsync(book);
+            await _dbContext.BookMetas.AddAsync(book);
 
             book.DomainEvents.Add(new BookCreatedEvent(book));
 

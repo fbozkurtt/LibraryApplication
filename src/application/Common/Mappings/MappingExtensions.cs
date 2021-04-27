@@ -2,10 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using LibraryApplication.Application.Common.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Common.Mappings

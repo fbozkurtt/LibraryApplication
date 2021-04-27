@@ -1,14 +1,13 @@
 ﻿using LibraryApplication.Application.Common.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LibraryApplication.Application.Commands.Identity
 {
+    [AllowAnonymous]
     public class CreateUserCommand : IRequest
     {
         [Required]

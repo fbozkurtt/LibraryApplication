@@ -1,15 +1,14 @@
 ﻿using LibraryApplication.Domain.Common;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryApplication.Domain.Entities
 {
-    public class Book : BaseEntity, IHasDomainEvent
+    public class BookMeta : BaseEntity, IHasDomainEvent
     {
         [Required]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [Required]
         public string Author { get; set; }
@@ -20,7 +19,9 @@ namespace LibraryApplication.Domain.Entities
 
         public string ShortDescription { get; set; }
 
-        public virtual List<BookProduct> BooksInInventory { get; set; } = new List<BookProduct>();
+        public virtual List<BookCopy> BooksInInventory { get; set; } = new List<BookCopy>();
+
+        public virtual List<BookReservation> BookReservations { get; set; } = new List<BookReservation>();
 
         public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
     }

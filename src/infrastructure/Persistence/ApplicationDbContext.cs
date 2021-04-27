@@ -7,10 +7,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,9 +34,9 @@ namespace LibraryApplication.Infrastructure.Persistence
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Book> Books { get; set; }
+        public DbSet<BookMeta> BookMetas { get; set; }
 
-        public DbSet<BookProduct> BookProducts { get; set; }
+        public DbSet<BookCopy> BookCopies { get; set; }
 
         public DbSet<BookReservation> BookReservations { get; set; }
 

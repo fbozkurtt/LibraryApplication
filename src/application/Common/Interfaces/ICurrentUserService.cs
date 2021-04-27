@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LibraryApplication.Application.Common.Interfaces
+﻿namespace LibraryApplication.Application.Common.Interfaces
 {
     public interface ICurrentUserService
     {

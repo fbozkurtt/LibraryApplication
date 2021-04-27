@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using LibraryApplication.Constants;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LibraryApplication.Application.Commands.Identity
 {
+    [Authorize(Roles = DefaultRoleNames.User)]
     class UpdateUserCommand
     {
     }
