@@ -1,6 +1,7 @@
 ﻿using LibraryApplication.Application.Common.Interfaces;
 using LibraryApplication.Application.Common.Models;
 using LibraryApplication.Constants;
+using LibraryApplication.Domain.Events;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -35,13 +36,7 @@ namespace LibraryApplication.Application.Commands.Reservation
                 r.BookCopy.QRCode.Equals(request.QRCode) && r.Returned.Equals(false));
 
             if (bookReservation == null)
-            {
-                return new ReturnBookResponse()
-                {
-                    Success = false,
-                    Message = $"Book is already returned."
-                };
-            }
+                throw new Exception("Book is already returned or book reservation does not exist.");
 
             var daysPassedSinceReservationEndDate = (DateTime.Now - bookReservation.ReservationEnds).TotalDays;
 
@@ -53,12 +48,8 @@ namespace LibraryApplication.Application.Commands.Reservation
                 {
                     await _dbContext.SaveChangesAsync();
 
-                    return new ReturnBookResponse()
-                    {
-                        Success = false,
-                        Message = $"{daysPassedSinceReservationEndDate} days have been past since return date." +
-                        $" You have to pay {bookReservation.TotalFee} before returning the book."
-                    };
+                    throw new Exception($"{daysPassedSinceReservationEndDate} days have been past since return date." +
+                        $" You have to pay {bookReservation.TotalFee} before returning the book.");
                 }
 
                 request.Fee -= bookReservation.TotalFee;
@@ -67,12 +58,14 @@ namespace LibraryApplication.Application.Commands.Reservation
             bookReservation.BookCopy.Reserved = false;
             bookReservation.Returned = true;
 
+            bookReservation.DomainEvents.Add(new BookReturnedEvent(bookReservation));
+
             await _dbContext.SaveChangesAsync();
 
             return new ReturnBookResponse()
             {
                 Success = true,
-                Message = bookReservation.TotalFee.Value > 0 ? $"Paid {bookReservation.TotalFee.Value}$ for being late for returning the book." : null
+                Message = bookReservation.TotalFee.HasValue ? $"Paid {bookReservation.TotalFee.Value}$ for being late for returning the book." : string.Empty
             };
         }
     }

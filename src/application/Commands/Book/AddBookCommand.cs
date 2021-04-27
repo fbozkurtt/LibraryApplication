@@ -15,7 +15,8 @@ namespace LibraryApplication.Application.Commands.Book
     [Authorize(Roles = DefaultRoleNames.Admin)]
     public class AddBookCommand : IRequest
     {
-        public long ISBN { get; set; }
+        [Required]
+        public string ISBN { get; set; }
 
         [Required]
         public string QRCode { get; set; }
@@ -36,8 +37,8 @@ namespace LibraryApplication.Application.Commands.Book
 
             if (book == null)
                 throw new NotFoundException(
-                    nameof(Domain.Entities.BookMeta),
-                    nameof(Domain.Entities.BookMeta.ISBN),
+                    nameof(BookMeta),
+                    nameof(BookMeta.ISBN),
                     request.ISBN);
 
             var bookProduct = new BookCopy() { QRCode = request.QRCode };

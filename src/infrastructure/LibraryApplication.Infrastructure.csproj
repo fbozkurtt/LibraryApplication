@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Persistence\Migrations\20210427013617_InitialCreateSQLite.cs" />
+    <Compile Remove="Persistence\Migrations\20210427013617_InitialCreateSQLite.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\20210427104154_InitialCreateSQLite.cs" />
+    <Compile Remove="Persistence\Migrations\20210427104154_InitialCreateSQLite.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.14" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization.Policy" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />

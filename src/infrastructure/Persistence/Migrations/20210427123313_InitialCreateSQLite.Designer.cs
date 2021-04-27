@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryApplication.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210427013617_InitialCreateSQLite")]
+    [Migration("20210427123313_InitialCreateSQLite")]
     partial class InitialCreateSQLite
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,8 +75,9 @@ namespace LibraryApplication.Infrastructure.Persistence.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("ISBN")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("TEXT");
@@ -101,73 +102,73 @@ namespace LibraryApplication.Infrastructure.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ab5aee1e-da47-4ffc-b327-b65509ad19ee"),
+                            Id = new Guid("dda9d2d9-9275-4af6-99d8-38e10ae4b735"),
                             Author = "Marijn Haverbeke",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(215),
-                            ISBN = 9781593275846L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 957, DateTimeKind.Local).AddTicks(7084),
+                            ISBN = "9781593275846",
                             ShortDescription = "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
                             Title = "Eloquent JavaScript, Second Edition"
                         },
                         new
                         {
-                            Id = new Guid("a8ba69b6-7a2b-4951-8e1f-ca2606e3d0d2"),
+                            Id = new Guid("f99a2dac-d99c-4a51-a63c-fd6c253a612b"),
                             Author = "Addy Osmani",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7708),
-                            ISBN = 9781449331818L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(8944),
+                            ISBN = "9781449331818",
                             ShortDescription = "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you.",
                             Title = "Learning JavaScript Design Patterns"
                         },
                         new
                         {
-                            Id = new Guid("587c4c65-5834-43e6-8913-ec232db0c4bc"),
+                            Id = new Guid("45b93e4d-acc9-4b40-9448-0cf475d55dff"),
                             Author = "Axel Rauschmayer",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7755),
-                            ISBN = 9781449365035L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9003),
+                            ISBN = "9781449365035",
                             ShortDescription = "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
                             Title = "Speaking JavaScript"
                         },
                         new
                         {
-                            Id = new Guid("a6b36602-6954-4434-90f7-cb21615c0f47"),
+                            Id = new Guid("ee4b128d-fcbc-4a2c-875f-0dd5bf14e3ba"),
                             Author = "Eric Elliott",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7759),
-                            ISBN = 9781491950296L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9008),
+                            ISBN = "9781491950296",
                             ShortDescription = "Take advantage of JavaScript's power to build robust web-scale or enterprise applications that are easy to extend and maintain. By applying the design patterns outlined in this practical book, experienced JavaScript developers will learn how to write flexible and resilient code that's easier-yes, easier-to work with as your code base grows.",
                             Title = "Programming JavaScript Applications"
                         },
                         new
                         {
-                            Id = new Guid("65c420e2-2630-4e26-82e1-c552682f45c3"),
+                            Id = new Guid("ee02d0e8-c34b-453f-83b4-dd2a1d605d51"),
                             Author = "Nicholas C. Zakas",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7762),
-                            ISBN = 9781593277574L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9011),
+                            ISBN = "9781593277574",
                             ShortDescription = "ECMAScript 6 represents the biggest update to the core of JavaScript in the history of the language. In Understanding ECMAScript 6, expert developer Nicholas C. Zakas provides a complete guide to the object types, syntax, and other exciting changes that ECMAScript 6 brings to JavaScript.",
                             Title = "Understanding ECMAScript 6"
                         },
                         new
                         {
-                            Id = new Guid("8f359133-3959-4f82-a569-e90c381c283b"),
+                            Id = new Guid("ee60226f-3a6f-44b9-9015-066ac1fa26fb"),
                             Author = "Kyle Simpson",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7766),
-                            ISBN = 9781491904244L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9016),
+                            ISBN = "9781491904244",
                             ShortDescription = "No matter how much experience you have with JavaScript, odds are you don’t fully understand the language. As part of the \"You Don’t Know JS\" series, this compact guide focuses on new features available in ECMAScript 6 (ES6), the latest version of the standard upon which JavaScript is built.",
                             Title = "You Don't Know JS"
                         },
                         new
                         {
-                            Id = new Guid("3e27f4b0-8483-4509-9703-fbe8a2d054de"),
+                            Id = new Guid("02fa06db-3359-446a-ac73-ac1a21b8461d"),
                             Author = "Richard E. Silverman",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7780),
-                            ISBN = 9781449325862L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9019),
+                            ISBN = "9781449325862",
                             ShortDescription = "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git experience.",
                             Title = "Git Pocket Guide"
                         },
                         new
                         {
-                            Id = new Guid("5874e4c0-d135-4938-97db-d6eecb8f3cd3"),
+                            Id = new Guid("138a491c-3cf0-4f87-aa68-66fa410dd518"),
                             Author = "Glenn Block, et al.",
-                            Created = new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7783),
-                            ISBN = 9781449337711L,
+                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9021),
+                            ISBN = "9781449337711",
                             ShortDescription = "Design and build Web APIs for a broad range of clients—including browsers and mobile devices—that can adapt to change over time. This practical, hands-on guide takes you through the theory and tools you need to build evolvable HTTP services with Microsoft’s ASP.NET Web API framework. In the process, you’ll learn how design and implement a real-world Web API.",
                             Title = "Designing Evolvable Web APIs with ASP.NET"
                         });
@@ -435,7 +436,7 @@ namespace LibraryApplication.Infrastructure.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("BookCopyId");
 
-                    b.HasOne("LibraryApplication.Domain.Entities.BookMeta", null)
+                    b.HasOne("LibraryApplication.Domain.Entities.BookMeta", "BookMeta")
                         .WithMany("BookReservations")
                         .HasForeignKey("BookMetaId");
                 });

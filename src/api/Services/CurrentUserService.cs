@@ -1,5 +1,6 @@
 ﻿using LibraryApplication.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Security.Claims;
 
 namespace LibraryApplication.Web.API.Services
@@ -13,7 +14,7 @@ namespace LibraryApplication.Web.API.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string UserId => (_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
+        public Guid UserId => Guid.Parse((_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier)));
 
         public string Username => (_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name));
     }

@@ -57,7 +57,7 @@ namespace LibraryApplication.Infrastructure.Persistence.Migrations
                     LastModifiedBy = table.Column<Guid>(nullable: true),
                     Title = table.Column<string>(nullable: false),
                     Author = table.Column<string>(nullable: false),
-                    ISBN = table.Column<long>(nullable: false),
+                    ISBN = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     ShortDescription = table.Column<string>(nullable: true)
                 },
@@ -210,9 +210,9 @@ namespace LibraryApplication.Infrastructure.Persistence.Migrations
                     DailyExpirationFee = table.Column<decimal>(nullable: false),
                     TotalFee = table.Column<decimal>(nullable: true),
                     ReservationEnds = table.Column<DateTime>(nullable: false),
+                    BookMetaId = table.Column<Guid>(nullable: true),
                     BookCopyId = table.Column<Guid>(nullable: true),
-                    ApplicationUserId = table.Column<Guid>(nullable: true),
-                    BookMetaId = table.Column<Guid>(nullable: true)
+                    ApplicationUserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -240,42 +240,42 @@ namespace LibraryApplication.Infrastructure.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("ab5aee1e-da47-4ffc-b327-b65509ad19ee"), "Marijn Haverbeke", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(215), null, null, 9781593275846L, null, null, "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.", "Eloquent JavaScript, Second Edition" });
+                values: new object[] { new Guid("dda9d2d9-9275-4af6-99d8-38e10ae4b735"), "Marijn Haverbeke", new DateTime(2021, 4, 27, 15, 33, 12, 957, DateTimeKind.Local).AddTicks(7084), null, null, "9781593275846", null, null, "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.", "Eloquent JavaScript, Second Edition" });
 
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("a8ba69b6-7a2b-4951-8e1f-ca2606e3d0d2"), "Addy Osmani", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7708), null, null, 9781449331818L, null, null, "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you.", "Learning JavaScript Design Patterns" });
+                values: new object[] { new Guid("f99a2dac-d99c-4a51-a63c-fd6c253a612b"), "Addy Osmani", new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(8944), null, null, "9781449331818", null, null, "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you.", "Learning JavaScript Design Patterns" });
 
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("587c4c65-5834-43e6-8913-ec232db0c4bc"), "Axel Rauschmayer", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7755), null, null, 9781449365035L, null, null, "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.", "Speaking JavaScript" });
+                values: new object[] { new Guid("45b93e4d-acc9-4b40-9448-0cf475d55dff"), "Axel Rauschmayer", new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9003), null, null, "9781449365035", null, null, "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.", "Speaking JavaScript" });
 
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("a6b36602-6954-4434-90f7-cb21615c0f47"), "Eric Elliott", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7759), null, null, 9781491950296L, null, null, "Take advantage of JavaScript's power to build robust web-scale or enterprise applications that are easy to extend and maintain. By applying the design patterns outlined in this practical book, experienced JavaScript developers will learn how to write flexible and resilient code that's easier-yes, easier-to work with as your code base grows.", "Programming JavaScript Applications" });
+                values: new object[] { new Guid("ee4b128d-fcbc-4a2c-875f-0dd5bf14e3ba"), "Eric Elliott", new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9008), null, null, "9781491950296", null, null, "Take advantage of JavaScript's power to build robust web-scale or enterprise applications that are easy to extend and maintain. By applying the design patterns outlined in this practical book, experienced JavaScript developers will learn how to write flexible and resilient code that's easier-yes, easier-to work with as your code base grows.", "Programming JavaScript Applications" });
 
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("65c420e2-2630-4e26-82e1-c552682f45c3"), "Nicholas C. Zakas", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7762), null, null, 9781593277574L, null, null, "ECMAScript 6 represents the biggest update to the core of JavaScript in the history of the language. In Understanding ECMAScript 6, expert developer Nicholas C. Zakas provides a complete guide to the object types, syntax, and other exciting changes that ECMAScript 6 brings to JavaScript.", "Understanding ECMAScript 6" });
+                values: new object[] { new Guid("ee02d0e8-c34b-453f-83b4-dd2a1d605d51"), "Nicholas C. Zakas", new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9011), null, null, "9781593277574", null, null, "ECMAScript 6 represents the biggest update to the core of JavaScript in the history of the language. In Understanding ECMAScript 6, expert developer Nicholas C. Zakas provides a complete guide to the object types, syntax, and other exciting changes that ECMAScript 6 brings to JavaScript.", "Understanding ECMAScript 6" });
 
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("8f359133-3959-4f82-a569-e90c381c283b"), "Kyle Simpson", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7766), null, null, 9781491904244L, null, null, "No matter how much experience you have with JavaScript, odds are you don’t fully understand the language. As part of the \"You Don’t Know JS\" series, this compact guide focuses on new features available in ECMAScript 6 (ES6), the latest version of the standard upon which JavaScript is built.", "You Don't Know JS" });
+                values: new object[] { new Guid("ee60226f-3a6f-44b9-9015-066ac1fa26fb"), "Kyle Simpson", new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9016), null, null, "9781491904244", null, null, "No matter how much experience you have with JavaScript, odds are you don’t fully understand the language. As part of the \"You Don’t Know JS\" series, this compact guide focuses on new features available in ECMAScript 6 (ES6), the latest version of the standard upon which JavaScript is built.", "You Don't Know JS" });
 
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("3e27f4b0-8483-4509-9703-fbe8a2d054de"), "Richard E. Silverman", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7780), null, null, 9781449325862L, null, null, "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git experience.", "Git Pocket Guide" });
+                values: new object[] { new Guid("02fa06db-3359-446a-ac73-ac1a21b8461d"), "Richard E. Silverman", new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9019), null, null, "9781449325862", null, null, "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git experience.", "Git Pocket Guide" });
 
             migrationBuilder.InsertData(
                 table: "BookMetas",
                 columns: new[] { "Id", "Author", "Created", "CreatedBy", "Description", "ISBN", "LastModified", "LastModifiedBy", "ShortDescription", "Title" },
-                values: new object[] { new Guid("5874e4c0-d135-4938-97db-d6eecb8f3cd3"), "Glenn Block, et al.", new DateTime(2021, 4, 27, 4, 36, 17, 372, DateTimeKind.Local).AddTicks(7783), null, null, 9781449337711L, null, null, "Design and build Web APIs for a broad range of clients—including browsers and mobile devices—that can adapt to change over time. This practical, hands-on guide takes you through the theory and tools you need to build evolvable HTTP services with Microsoft’s ASP.NET Web API framework. In the process, you’ll learn how design and implement a real-world Web API.", "Designing Evolvable Web APIs with ASP.NET" });
+                values: new object[] { new Guid("138a491c-3cf0-4f87-aa68-66fa410dd518"), "Glenn Block, et al.", new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9021), null, null, "9781449337711", null, null, "Design and build Web APIs for a broad range of clients—including browsers and mobile devices—that can adapt to change over time. This practical, hands-on guide takes you through the theory and tools you need to build evolvable HTTP services with Microsoft’s ASP.NET Web API framework. In the process, you’ll learn how design and implement a real-world Web API.", "Designing Evolvable Web APIs with ASP.NET" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

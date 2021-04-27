@@ -3,6 +3,7 @@ using LibraryApplication.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,7 +12,8 @@ namespace LibraryApplication.Application.Commands.Book
     [Authorize(Roles = DefaultRoleNames.Admin)]
     public class UpdateBookCommand : IRequest
     {
-        public long ISBN { get; }
+        [Required]
+        public string ISBN { get; set; }
 
         public string NewName { get; set; }
 

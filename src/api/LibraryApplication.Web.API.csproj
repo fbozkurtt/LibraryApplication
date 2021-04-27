@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Compile Remove="Logs\**" />
+    <Content Remove="Data\**" />
+    <Content Remove="Logs\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Data\**" />
+    <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.14">

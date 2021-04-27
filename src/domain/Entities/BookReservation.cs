@@ -9,8 +9,6 @@ namespace LibraryApplication.Domain.Entities
     {
         public Guid UserId { get; set; }
 
-        //public Guid BookProductId { get; set; }
-
         public bool Returned { get; set; }
 
         public decimal DailyExpirationFee { get; set; }
@@ -19,7 +17,7 @@ namespace LibraryApplication.Domain.Entities
 
         public DateTime ReservationEnds { get; set; }
 
-        //public virtual IdentityUser<Guid> User { get; set; }
+        public virtual BookMeta BookMeta { get; set; }
 
         public virtual BookCopy BookCopy { get; set; }
 

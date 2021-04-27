@@ -47,13 +47,13 @@ namespace LibraryApplication.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = Guid.Parse(_currentUserService.UserId ?? Guid.Empty.ToString());
+                        entry.Entity.CreatedBy = _currentUserService.UserId;
                         entry.Entity.Created = DateTime.Now;
                         entry.Entity.Id = Guid.NewGuid();
                         break;
 
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = Guid.Parse(_currentUserService.UserId ?? Guid.Empty.ToString());
+                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
                         entry.Entity.LastModified = DateTime.Now;
                         break;
                 }

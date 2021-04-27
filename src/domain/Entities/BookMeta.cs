@@ -13,15 +13,16 @@ namespace LibraryApplication.Domain.Entities
         [Required]
         public string Author { get; set; }
 
-        public long ISBN { get; set; }
+        [Required]
+        public string ISBN { get; set; }
 
         public string Description { get; set; }
 
         public string ShortDescription { get; set; }
 
-        public virtual List<BookCopy> BooksInInventory { get; set; } = new List<BookCopy>();
+        public virtual List<BookCopy> BooksInInventory { get; set; }
 
-        public virtual List<BookReservation> BookReservations { get; set; } = new List<BookReservation>();
+        public virtual List<BookReservation> BookReservations { get; set; }
 
         public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
     }

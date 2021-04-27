@@ -22,7 +22,8 @@ namespace LibraryApplication.Application.Commands.Book
         [MaxLength(500)]
         public string Author { get; set; }
 
-        public long ISBN { get; set; }
+        [Required]
+        public string ISBN { get; set; }
 
         [MaxLength(4000)]
         public string Description { get; set; }

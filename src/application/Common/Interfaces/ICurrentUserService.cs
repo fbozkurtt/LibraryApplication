@@ -1,8 +1,10 @@
-﻿namespace LibraryApplication.Application.Common.Interfaces
+﻿using System;
+
+namespace LibraryApplication.Application.Common.Interfaces
 {
     public interface ICurrentUserService
     {
-        public string UserId { get; }
+        public Guid UserId { get; }
 
         public string Username { get; }
     }

@@ -2,10 +2,12 @@
 using LibraryApplication.Application.Common.Interfaces;
 using LibraryApplication.Constants;
 using LibraryApplication.Domain.Entities;
+using LibraryApplication.Domain.Events;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +17,8 @@ namespace LibraryApplication.Application.Commands.Reservation
     [Authorize(Roles = DefaultRoleNames.User)]
     public class ReserveBookCommand : IRequest<string>
     {
-        public long ISBN { get; }
+        [Required]
+        public string ISBN { get; set; }
     }
 
     public class ReserveBookCommandHandler : IRequestHandler<ReserveBookCommand, string>
@@ -54,6 +57,11 @@ namespace LibraryApplication.Application.Commands.Reservation
             if (user == null)
                 throw new Exception("User not found.");
 
+            var bookBorrowedByUser = bookMeta.BookReservations.Any(r=>r.UserId.Equals(user.Id) && r.Returned.Equals(false));
+
+            if(bookBorrowedByUser)
+                throw new Exception("User already borrowed this book.");
+
             bookToReserve.Reserved = true;
 
             var bookReservation = new BookReservation()
@@ -61,9 +69,12 @@ namespace LibraryApplication.Application.Commands.Reservation
                 UserId = user.Id,
                 ReservationEnds = DateTime.Now + TimeSpan.FromDays(7),
                 DailyExpirationFee = 0.50m,
-                BookCopy = bookToReserve
+                BookCopy = bookToReserve,
+                BookMeta = bookMeta
             };
 
+            bookReservation.DomainEvents.Add(new BookReservedEvent(bookReservation));
+            bookMeta.BookReservations.Add(bookReservation);
 
             await _dbContext.BookReservations.AddAsync(bookReservation);
             await _dbContext.SaveChangesAsync(cancellationToken);
