@@ -28,24 +28,16 @@ namespace LibraryApplication.Application.DTOs
             profile.CreateMap<BookCopy, ReservedBookDto>()
                 .ForMember(d => d.Title,
                 s => s.MapFrom(
-                    b => b.BookMeta.Title));
-
-            profile.CreateMap<BookCopy, ReservedBookDto>()
+                    b => b.BookMeta.Title))
                 .ForMember(d => d.Author,
                 s => s.MapFrom(
-                    b => b.BookMeta.Author));
-
-            profile.CreateMap<BookCopy, ReservedBookDto>()
+                    b => b.BookMeta.Author))
                 .ForMember(d => d.ISBN,
                 s => s.MapFrom(
-                    b => b.BookMeta.ISBN));
-
-            profile.CreateMap<BookCopy, ReservedBookDto>()
+                    b => b.BookMeta.ISBN))
                 .ForMember(d => d.Description,
                 s => s.MapFrom(
-                    b => b.BookMeta.Description));
-
-            profile.CreateMap<BookCopy, ReservedBookDto>()
+                    b => b.BookMeta.Description))
                 .ForMember(d => d.ShortDescription,
                 s => s.MapFrom(
                     b => b.BookMeta.ShortDescription));

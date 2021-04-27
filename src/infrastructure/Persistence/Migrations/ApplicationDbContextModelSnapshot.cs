@@ -100,72 +100,72 @@ namespace LibraryApplication.Infrastructure.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dda9d2d9-9275-4af6-99d8-38e10ae4b735"),
+                            Id = new Guid("e9f82863-4022-4a18-86dd-2879b242e0cd"),
                             Author = "Marijn Haverbeke",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 957, DateTimeKind.Local).AddTicks(7084),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 343, DateTimeKind.Local).AddTicks(9072),
                             ISBN = "9781593275846",
                             ShortDescription = "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
                             Title = "Eloquent JavaScript, Second Edition"
                         },
                         new
                         {
-                            Id = new Guid("f99a2dac-d99c-4a51-a63c-fd6c253a612b"),
+                            Id = new Guid("119343d9-c0c0-4ddb-a652-52ec02b7b61e"),
                             Author = "Addy Osmani",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(8944),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 344, DateTimeKind.Local).AddTicks(6388),
                             ISBN = "9781449331818",
                             ShortDescription = "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you.",
                             Title = "Learning JavaScript Design Patterns"
                         },
                         new
                         {
-                            Id = new Guid("45b93e4d-acc9-4b40-9448-0cf475d55dff"),
+                            Id = new Guid("23f17ed5-48ec-410c-a886-df289ccf5c7c"),
                             Author = "Axel Rauschmayer",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9003),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 344, DateTimeKind.Local).AddTicks(6435),
                             ISBN = "9781449365035",
                             ShortDescription = "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
                             Title = "Speaking JavaScript"
                         },
                         new
                         {
-                            Id = new Guid("ee4b128d-fcbc-4a2c-875f-0dd5bf14e3ba"),
+                            Id = new Guid("5d27b8cd-0f1b-465b-ac68-fb615dbd0e67"),
                             Author = "Eric Elliott",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9008),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 344, DateTimeKind.Local).AddTicks(6439),
                             ISBN = "9781491950296",
                             ShortDescription = "Take advantage of JavaScript's power to build robust web-scale or enterprise applications that are easy to extend and maintain. By applying the design patterns outlined in this practical book, experienced JavaScript developers will learn how to write flexible and resilient code that's easier-yes, easier-to work with as your code base grows.",
                             Title = "Programming JavaScript Applications"
                         },
                         new
                         {
-                            Id = new Guid("ee02d0e8-c34b-453f-83b4-dd2a1d605d51"),
+                            Id = new Guid("213d885c-00d2-4a9d-b4a5-467a2226274c"),
                             Author = "Nicholas C. Zakas",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9011),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 344, DateTimeKind.Local).AddTicks(6441),
                             ISBN = "9781593277574",
                             ShortDescription = "ECMAScript 6 represents the biggest update to the core of JavaScript in the history of the language. In Understanding ECMAScript 6, expert developer Nicholas C. Zakas provides a complete guide to the object types, syntax, and other exciting changes that ECMAScript 6 brings to JavaScript.",
                             Title = "Understanding ECMAScript 6"
                         },
                         new
                         {
-                            Id = new Guid("ee60226f-3a6f-44b9-9015-066ac1fa26fb"),
+                            Id = new Guid("08c59d6d-0adf-4a09-bcc3-4885e95fda2c"),
                             Author = "Kyle Simpson",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9016),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 344, DateTimeKind.Local).AddTicks(6445),
                             ISBN = "9781491904244",
                             ShortDescription = "No matter how much experience you have with JavaScript, odds are you don’t fully understand the language. As part of the \"You Don’t Know JS\" series, this compact guide focuses on new features available in ECMAScript 6 (ES6), the latest version of the standard upon which JavaScript is built.",
                             Title = "You Don't Know JS"
                         },
                         new
                         {
-                            Id = new Guid("02fa06db-3359-446a-ac73-ac1a21b8461d"),
+                            Id = new Guid("bfe19fe6-03fc-49c8-ad19-249c65deb2f9"),
                             Author = "Richard E. Silverman",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9019),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 344, DateTimeKind.Local).AddTicks(6460),
                             ISBN = "9781449325862",
                             ShortDescription = "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git experience.",
                             Title = "Git Pocket Guide"
                         },
                         new
                         {
-                            Id = new Guid("138a491c-3cf0-4f87-aa68-66fa410dd518"),
+                            Id = new Guid("7fd532e4-a1ba-406e-9d9f-4e4ee6c09120"),
                             Author = "Glenn Block, et al.",
-                            Created = new DateTime(2021, 4, 27, 15, 33, 12, 958, DateTimeKind.Local).AddTicks(9021),
+                            Created = new DateTime(2021, 4, 27, 22, 11, 26, 344, DateTimeKind.Local).AddTicks(6462),
                             ISBN = "9781449337711",
                             ShortDescription = "Design and build Web APIs for a broad range of clients—including browsers and mobile devices—that can adapt to change over time. This practical, hands-on guide takes you through the theory and tools you need to build evolvable HTTP services with Microsoft’s ASP.NET Web API framework. In the process, you’ll learn how design and implement a real-world Web API.",
                             Title = "Designing Evolvable Web APIs with ASP.NET"

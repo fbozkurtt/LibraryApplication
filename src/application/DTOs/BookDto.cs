@@ -25,18 +25,17 @@ namespace LibraryApplication.Application.DTOs
         public void Mapping(Profile profile)
         {
             profile.CreateMap<BookMeta, BookDto>()
+                .ForMember(d => d.Reserved,
+                s => s.MapFrom(
+                    m => m.BooksInInventory
+                    .Where(b => b.Reserved.Equals(true))
+                    .ToList().Count))
                 .ForMember(d => d.Available,
                 s => s.MapFrom(
                     m => m.BooksInInventory
                     .Where(b => b.Reserved.Equals(false))
                     .ToList().Count));
 
-            profile.CreateMap<BookMeta, BookDto>()
-                .ForMember(d => d.Reserved,
-                s => s.MapFrom(
-                    m => m.BooksInInventory
-                    .Where(b => b.Reserved.Equals(true))
-                    .ToList().Count));
         }
     }
 }

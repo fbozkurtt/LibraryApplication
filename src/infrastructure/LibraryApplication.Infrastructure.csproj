@@ -9,6 +9,8 @@
     <Compile Remove="Persistence\Migrations\20210427013617_InitialCreateSQLite.Designer.cs" />
     <Compile Remove="Persistence\Migrations\20210427104154_InitialCreateSQLite.cs" />
     <Compile Remove="Persistence\Migrations\20210427104154_InitialCreateSQLite.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\20210427123313_InitialCreateSQLite.cs" />
+    <Compile Remove="Persistence\Migrations\20210427123313_InitialCreateSQLite.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
