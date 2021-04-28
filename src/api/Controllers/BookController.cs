@@ -12,19 +12,19 @@ namespace LibraryApplication.Web.API.Controllers
     public class BookController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<PaginatedList<BookDto>> Books([FromQuery] GetBooksQuery query)
+        public async Task<PaginatedList<BookDto>> GetBooks([FromQuery] GetBooksQuery query)
             => await Mediator.Send(query);
 
         [HttpPost]
-        public async Task<ActionResult> Create(CreateBookCommand command)
+        public async Task<ActionResult> CreateBookMeta(CreateBookCommand command)
         {
             await Mediator.Send(command);
 
             return NoContent();
         }
 
-        [HttpPost("[action]")]
-        public async Task<ActionResult> AddToInventory([FromQuery] AddBookCommand command)
+        [HttpPost]
+        public async Task<ActionResult> AddBookToInventory([FromQuery] AddBookCommand command)
         {
             await Mediator.Send(command);
 
@@ -32,7 +32,7 @@ namespace LibraryApplication.Web.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromQuery] UpdateBookCommand command)
+        public async Task<ActionResult> UpdateBookMeta([FromQuery] UpdateBookCommand command)
         {
             await Mediator.Send(command);
 
@@ -40,7 +40,7 @@ namespace LibraryApplication.Web.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete([FromQuery] DeleteBookCommand command)
+        public async Task<ActionResult> DeleteBookMeta([FromQuery] DeleteBookCommand command)
         {
             await Mediator.Send(command);
 

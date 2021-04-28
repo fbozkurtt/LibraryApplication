@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace LibraryApplication.Application.Queries.Identity
 {
     [Authorize(Roles = DefaultRoleNames.User)]
-    public class GetTokenQuery : IRequest<LoginResponse>
+    public class GetTokenQuery : IRequest<GetTokenResponse>
     {
         [Required]
         public string Username { get; set; }
@@ -20,7 +20,7 @@ namespace LibraryApplication.Application.Queries.Identity
         public string Password { get; set; }
     }
 
-    public class GetTokenQueryHandler : IRequestHandler<GetTokenQuery, LoginResponse>
+    public class GetTokenQueryHandler : IRequestHandler<GetTokenQuery, GetTokenResponse>
     {
         private readonly IIdentityService _identityService;
 
@@ -29,7 +29,7 @@ namespace LibraryApplication.Application.Queries.Identity
             _identityService = identityService;
         }
 
-        public async Task<LoginResponse> Handle(GetTokenQuery request, CancellationToken cancellationToken)
+        public async Task<GetTokenResponse> Handle(GetTokenQuery request, CancellationToken cancellationToken)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -37,7 +37,7 @@ namespace LibraryApplication.Application.Queries.Identity
                 request.Username,
                 request.Password);
 
-            return new LoginResponse()
+            return new GetTokenResponse()
             {
                 Token = tokenHandler.WriteToken(token),
                 Username = request.Username,

@@ -10,7 +10,7 @@ namespace LibraryApplication.Web.API.Controllers
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public abstract class ApiControllerBase : ControllerBase
     {

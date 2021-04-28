@@ -14,15 +14,15 @@ namespace LibraryApplication.Web.API.Controllers
     public class ReservationController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<PaginatedList<ReservedBookDto>> Reservations([FromQuery] GetReservedBooksQuery query)
+        public async Task<PaginatedList<ReservedBookDto>> GetReservations([FromQuery] GetReservedBooksQuery query)
             => await Mediator.Send(query);
 
         [HttpPost]
-        public async Task<string> Reserve([FromQuery] ReserveBookCommand command)
+        public async Task<string> ReserveBook([FromQuery] ReserveBookCommand command)
             => await Mediator.Send(command);
 
         [HttpPut]
-        public async Task<ReturnBookResponse> Return(ReturnBookCommand command)
+        public async Task<ReturnBookResponse> ReturnBook(ReturnBookCommand command)
             => await Mediator.Send(command);
     }
 }

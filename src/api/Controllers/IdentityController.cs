@@ -15,12 +15,12 @@ namespace LibraryApplication.Web.API.Controllers
     {
         [AllowAnonymous]
         [HttpPost]
-        public async Task<LoginResponse> Token(GetTokenQuery query)
+        public async Task<GetTokenResponse> GetToken(GetTokenQuery query)
                => await Mediator.Send(query);
 
         [AllowAnonymous]
-        [HttpPost("[action]")]
-        public async Task<ActionResult> Register(CreateUserCommand command)
+        [HttpPost]
+        public async Task<ActionResult> CreateUser(CreateUserCommand command)
         {
             await Mediator.Send(command);
 
