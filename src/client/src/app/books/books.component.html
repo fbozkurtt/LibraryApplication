@@ -1,0 +1,58 @@
+<div class="table-responsive py-2">
+    <div *ngIf="bookPaginatedList">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead class="thead-light">
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th style="width: 40%">Description</th>
+                    <th>Available</th>
+                    <th>Reserved</th>
+                    <th>Reserve book</th>
+                    <th>Add book to inventory</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of bookPaginatedList.items" style="font-size: 0.9rem;">
+                        <td class="font-weight-bolder align-middle">{{ book.title }}</td>
+                        <td class="align-middle">{{ book.author }}</td>
+                        <td class="align-middle">{{ book.isbn }}</td>
+                        <td class="align-middle"><span class="text-muted">{{ book.shortDescription }}</span></td>
+                        <td class="align-middle pl-4"><span class="badge badge-success font-weight-bold"
+                                style="width: 30px">{{ book.available }}</span></td>
+                        <td class="align-middle pl-4"><span class="badge badge-danger font-weight-bold"
+                                style="width: 30px">{{ book.reserved }}</span></td>
+                        <td class="align-middle pl-5">
+                            <button class="btn btn-primary btn-sm" (click)="reserveBook(book.isbn)">
+                                <span class="fa fa-cart-plus"></span>
+                            </button>
+                        </td>
+                        <td class="align-middle pl-5">
+                            <button class="btn btn-primary btn-sm" (click)="addBook(book.isbn)">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+            <div *ngIf="bookPaginatedList.totalPages > 1">
+                <nav>
+                    <ul class="pagination justify-content-end">
+                        <li *ngIf="bookPaginatedList.hasPreviousPage === true">
+                            <a class="page-link" tabindex="-1"
+                                (click)="fetchData(bookPaginatedList.pageIndex - 2)">Previous</a>
+                        </li>
+                        <li class="page-item" *ngFor="let in of counter(bookPaginatedList.totalPages); let i = index">
+                            <a class="page-link" [class.active]="bookPaginatedList.pageIndex === i + 1"
+                                (click)="fetchData(i)"> {{i+1}}</a>
+                        </li>
+                        <li *ngIf="bookPaginatedList.hasNextPage === true">
+                            <a class="page-link" tabindex="-1" (click)="fetchData(bookPaginatedList.pageIndex)">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

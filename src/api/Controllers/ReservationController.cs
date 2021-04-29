@@ -14,7 +14,7 @@ namespace LibraryApplication.Web.API.Controllers
     public class ReservationController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<PaginatedList<ReservedBookDto>> GetReservations([FromQuery] GetReservedBooksQuery query)
+        public async Task<PaginatedList<BookReservationDto>> GetReservations([FromQuery] GetReservedBooksQuery query)
             => await Mediator.Send(query);
 
         [HttpPost]

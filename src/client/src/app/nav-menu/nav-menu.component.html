@@ -1,0 +1,26 @@
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand d-md-none d-lg-block" href="">Library App</a>
+    <button class="navbar-toggler">
+        <span class="fa fa-align-justify"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="/books">
+                <span class="fa fa-book nav-link-icon d-none d-lg-block" aria-hidden="true"><span class="float-right" style="font-family: cursive, 'Times New Roman', Times, serif">Books</span></span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/reservations">
+                <span class="fa fa-history nav-link-icon d-none d-lg-block" aria-hidden="true"><span class="float-right" style="font-family: cursive, 'Times New Roman', Times, serif">Reservations</span></span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="logout()" style="cursor: pointer">
+                <span class="fa fa-sign-out-alt nav-link-icon d-none d-lg-block" aria-hidden="true"><span class="float-right" style="font-family: cursive, 'Times New Roman', Times, serif">Logout</span></span>
+            </a>
+        </li>
+    </ul>
+</div>

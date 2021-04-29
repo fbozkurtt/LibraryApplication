@@ -15,14 +15,14 @@ using System.Threading.Tasks;
 namespace LibraryApplication.Application.Queries.Reservation
 {
     [Authorize(Roles = DefaultRoleNames.User)]
-    public class GetReservedBooksQuery : IRequest<PaginatedList<ReservedBookDto>>
+    public class GetReservedBooksQuery : IRequest<PaginatedList<BookReservationDto>>
     {
         public int PageNumber { get; set; } = 1;
 
         public int PageSize { get; set; } = 10;
     }
 
-    public class GetReservedBooksQueryHandler : IRequestHandler<GetReservedBooksQuery, PaginatedList<ReservedBookDto>>
+    public class GetReservedBooksQueryHandler : IRequestHandler<GetReservedBooksQuery, PaginatedList<BookReservationDto>>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly ICurrentUserService _currentUserService;
@@ -38,16 +38,15 @@ namespace LibraryApplication.Application.Queries.Reservation
             _mapper = mapper;
         }
 
-        public async Task<PaginatedList<ReservedBookDto>> Handle(GetReservedBooksQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedList<BookReservationDto>> Handle(GetReservedBooksQuery request, CancellationToken cancellationToken)
         {
             var bookres = await _dbContext.BookReservations.ToListAsync();
 
             return await _dbContext.BookReservations
                 .Where(b => b.UserId.Equals(_currentUserService.UserId))
-                .Select(b => b.BookCopy)
-                .OrderBy(b => b.Created)
+                .OrderByDescending(b => b.Created)
                 .AsNoTracking()
-                .ProjectTo<ReservedBookDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<BookReservationDto>(_mapper.ConfigurationProvider)
                 .PaginatedListAsync(request.PageNumber, request.PageSize);
         }
     }

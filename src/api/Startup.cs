@@ -45,7 +45,7 @@ namespace LibraryApplication.Web.API
                 options.AddPolicy("AllowSPA",
                                   builder =>
                                   {
-                                      builder.WithOrigins("https://localhost:5555")
+                                      builder.WithOrigins("http://localhost:5555")
                                       .AllowAnyHeader()
                                       .AllowAnyMethod()
                                       .AllowCredentials();

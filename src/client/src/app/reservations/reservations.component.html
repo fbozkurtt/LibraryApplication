@@ -1,0 +1,59 @@
+<div class="table-responsive py-2">
+    <div *ngIf="bookPaginatedList">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead class="thead-light">
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Reservation date</th>
+                    <th>Reservation ends</th>
+                    <th style="width: 9%;">QR code</th>
+                    <th>Date returned</th>
+                    <th>Return book</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reservation of bookPaginatedList.items"
+                        [class.table-success]="reservation.returned === true"
+                        [class.table-danger]="reservation.returned === false">
+                        <td>{{ reservation.title }}</td>
+                        <td>{{ reservation.author }}</td>
+                        <td>{{ reservation.isbn }}</td>
+                        <td>{{ reservation.dateReserved | date:'dd.MM.yyyy HH:mm' }}</td>
+                        <td>{{ reservation.reservationEnds | date:'dd.MM.yyyy' }}</td>
+                        <td>{{ reservation.qrCode }}</td>
+                        <td>{{ reservation.dateReturned | date:'dd.MM.yyyy HH:mm' }}</td>
+                        <td>
+                            <span *ngIf="reservation.returned === false" class="pl-4">
+                                <button class="btn btn-primary btn-sm" (click)="returnBook(reservation.qrCode)">
+                                    <span class="fa fa-undo"></span>
+                                </button>
+                            </span>
+                            <span *ngIf="reservation.returned === true" class="pl-2">
+                                Returned
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+            <div *ngIf="bookPaginatedList.totalPages > 1">
+                <nav>
+                    <ul class="pagination justify-content-end">
+                        <li *ngIf="bookPaginatedList.hasPreviousPage === true">
+                            <a class="page-link" tabindex="-1"
+                                (click)="fetchData(bookPaginatedList.pageIndex - 2)">Previous</a>
+                        </li>
+                        <li class="page-item" *ngFor="let in of counter(bookPaginatedList.totalPages); let i = index">
+                            <a class="page-link" [class.active]="bookPaginatedList.pageIndex === i + 1"
+                                (click)="fetchData(i)"> {{i+1}}</a>
+                        </li>
+                        <li *ngIf="bookPaginatedList.hasNextPage === true">
+                            <a class="page-link" tabindex="-1" (click)="fetchData(bookPaginatedList.pageIndex)">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

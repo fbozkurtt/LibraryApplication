@@ -1,0 +1,12 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Login Form -->
+        <form>
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="default: admin" [(ngModel)]="getTokenQuery.username"
+                required>
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="default: Admin!" [(ngModel)]="getTokenQuery.password"
+                required>
+            <input type="submit" class="fadeIn fourth" value="Log In" (click)="login()">
+        </form>
+    </div>
+</div>
