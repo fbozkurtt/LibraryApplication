@@ -22,7 +22,7 @@ export class Client {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl = 'https://localhost:5554';//baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+        this.baseUrl = 'https://localhost:5554'//baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     }
 
     /**
@@ -921,7 +921,7 @@ export interface IBookReservationDtoPaginatedList {
 }
 
 export class CreateBookCommand implements ICreateBookCommand {
-    name!: string;
+    title!: string;
     author!: string;
     isbn!: string;
     description?: string | undefined;
@@ -938,7 +938,7 @@ export class CreateBookCommand implements ICreateBookCommand {
 
     init(_data?: any) {
         if (_data) {
-            this.name = _data["name"];
+            this.title = _data["title"];
             this.author = _data["author"];
             this.isbn = _data["isbn"];
             this.description = _data["description"];
@@ -955,7 +955,7 @@ export class CreateBookCommand implements ICreateBookCommand {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["name"] = this.name;
+        data["title"] = this.title;
         data["author"] = this.author;
         data["isbn"] = this.isbn;
         data["description"] = this.description;
@@ -965,7 +965,7 @@ export class CreateBookCommand implements ICreateBookCommand {
 }
 
 export interface ICreateBookCommand {
-    name: string;
+    title: string;
     author: string;
     isbn: string;
     description?: string | undefined;

@@ -35,8 +35,8 @@ export class LoginComponent {
         this.document.defaultView.location.replace('/books');
       }).catch(error => {
         console.error(error);
-        alert('An error occured while performing login.');
+        var error = JSON.parse(error.response);
+        alert(error.detail);
       })
-    return false;
   }
 }

@@ -12,6 +12,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { BooksComponent } from './books/books.component';
 import { ApiAuthorizationModule } from '../auth/authorization.module';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ApiAuthorizationModule } from '../auth/authorization.module';
     LoginComponent,
     ReservationsComponent,
     NavMenuComponent,
-    BooksComponent
+    BooksComponent,
+    CreateBookComponent
   ],
   imports: [
     BrowserModule,

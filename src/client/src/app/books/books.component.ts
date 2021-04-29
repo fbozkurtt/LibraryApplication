@@ -24,6 +24,8 @@ export class BooksComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        var error = JSON.parse(error.response);
+        alert(error.detail);
       }
     );
   }
@@ -37,7 +39,8 @@ export class BooksComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        alert("Error: perhaps you already reserved this book?");
+        var error = JSON.parse(error.response);
+        alert(error.detail);
       }
     );
   }
@@ -52,7 +55,8 @@ export class BooksComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert("Error: you are not authorized to perform this action.");
+          var error = JSON.parse(error.response);
+          alert(error.detail);
         }
       );
   }

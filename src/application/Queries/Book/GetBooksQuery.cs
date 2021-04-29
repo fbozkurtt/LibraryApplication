@@ -38,7 +38,7 @@ namespace LibraryApplication.Application.Queries.Book
             var books = _dbContext.BookMetas.ToList();
 
             return await _dbContext.BookMetas
-                .OrderBy(b => b.Created)
+                .OrderByDescending(b => b.Created)
                 .AsNoTracking()
                 .ProjectTo<BookDto>(_mapper.ConfigurationProvider)
                 .PaginatedListAsync(request.PageNumber, request.PageSize); ;

@@ -28,6 +28,8 @@ export class ReservationsComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        var error = JSON.parse(error.response);
+        alert(error.detail);
       }
     );
   }
@@ -42,7 +44,8 @@ export class ReservationsComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        alert("Error");
+        var error = JSON.parse(error.response);
+        alert(error.detail);
       }
     );
   }

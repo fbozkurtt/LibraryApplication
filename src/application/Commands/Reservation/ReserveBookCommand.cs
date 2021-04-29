@@ -57,6 +57,11 @@ namespace LibraryApplication.Application.Commands.Reservation
             if (user == null)
                 throw new Exception("User not found.");
 
+            var booksBorrowedByUserCount = _dbContext.BookReservations.Where(r => r.UserId.Equals(user.Id) && r.Returned.Equals(false)).ToList().Count;
+
+            if (booksBorrowedByUserCount >= 3)
+                throw new Exception("User already reserved three books.");
+
             var bookBorrowedByUser = bookMeta.BookReservations.Any(r=>r.UserId.Equals(user.Id) && r.Returned.Equals(false));
 
             if(bookBorrowedByUser)

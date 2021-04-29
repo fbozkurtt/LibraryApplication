@@ -16,7 +16,7 @@ namespace LibraryApplication.Application.Commands.Book
     {
         [Required]
         [MaxLength(500)]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(500)]

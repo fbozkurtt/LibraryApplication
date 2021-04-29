@@ -39,8 +39,4 @@
     <ProjectReference Include="..\constants\LibraryApplication.Constants.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Persistence\Migrations\" />
-  </ItemGroup>
-
 </Project>

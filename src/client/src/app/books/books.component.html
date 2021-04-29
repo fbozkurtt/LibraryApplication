@@ -9,7 +9,7 @@
                     <th style="width: 40%">Description</th>
                     <th>Available</th>
                     <th>Reserved</th>
-                    <th>Reserve book</th>
+                    <th>Reserve</th>
                     <th>Add book to inventory</th>
                 </thead>
                 <tbody>
@@ -22,7 +22,7 @@
                                 style="width: 30px">{{ book.available }}</span></td>
                         <td class="align-middle pl-4"><span class="badge badge-danger font-weight-bold"
                                 style="width: 30px">{{ book.reserved }}</span></td>
-                        <td class="align-middle pl-5">
+                        <td class="align-middle pl-3">
                             <button class="btn btn-primary btn-sm" (click)="reserveBook(book.isbn)">
                                 <span class="fa fa-cart-plus"></span>
                             </button>
