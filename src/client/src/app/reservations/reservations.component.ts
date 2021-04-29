@@ -28,8 +28,7 @@ export class ReservationsComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        var error = JSON.parse(error.response);
-        alert(error.detail);
+        alert(error);
       }
     );
   }
