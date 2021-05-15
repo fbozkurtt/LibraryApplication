@@ -17,6 +17,7 @@ The project consists of following tools and technologies:
 •	Angular 11 for front-end coding
 •	Sass for the theme
 •	Bootstrap 4.6.0
+•	NSwag for API Client
 
 Also includes these:
 
